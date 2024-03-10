@@ -2,39 +2,23 @@ package de.telran.thatIsLife;
 
 import java.math.BigDecimal;
 
-public class Card {
+public abstract class Card {
     private String ownerName;
     private BigDecimal balance;
-
-
-    public Card(String ownerName, BigDecimal balance) {
-        this.ownerName = ownerName;
-        this.balance = balance;
-    }
+    private String pin;
 
 
     public void addBalance(BigDecimal sumRecharge) {
-        balance = balance.add(sumRecharge);
+        setBalance(getBalance().add(sumRecharge));
     }
 
 
-    public void withdraw(BigDecimal sumWithdraw) {
-        balance = balance.subtract(sumWithdraw);
-    }
+    public abstract void withdraw(BigDecimal sumWithdraw);
 
 
     public BigDecimal getBalanceUSD() {
-        BigDecimal balanceUSD = balance.multiply(BigDecimal.valueOf(1.09));
+        BigDecimal balanceUSD = getBalance().multiply(BigDecimal.valueOf(1.09));
         return balanceUSD;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Card{" +
-                "ownerName='" + ownerName + '\'' +
-                ", balance=" + balance +
-                '}';
     }
 
 
@@ -50,4 +34,15 @@ public class Card {
         return balance;
     }
 
+    public String getPin() {
+        return pin;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
 }

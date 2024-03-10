@@ -6,28 +6,29 @@ public class ATM {
     private Card card;
 
 
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
-
-    public void makeOperation(Card card, Operations operation, BigDecimal sum) {
-        switch (operation) {
-            case ADD_BALANCE -> card.addBalance(sum);
-            case WITHDRAW -> card.withdraw(sum);
+    public void setCard(Card card, String pin) {
+        if (pin.equals(card.getPin())) {
+            this.card = card;
         }
     }
 
-    public BigDecimal getBalance(Card card, Operations operation) {
-        BigDecimal result = new BigDecimal(0);
-        switch (operation) {
-            case GET_BALANCE -> {
-                result = card.getBalance();
-            }
-            case GET_BALANCE_IN_USD -> {
-                result = card.getBalanceUSD();
-            }
-        } return result;
+
+    public void addBalance(Card card, BigDecimal sum) {
+        card.addBalance(sum);
+    }
+
+
+    public void withdraw(Card card, BigDecimal sum) {
+        card.withdraw(sum);
+    }
+
+    public BigDecimal getBalance(Card card) {
+        return card.getBalance();
+
+    }
+
+    public BigDecimal getBalanceUSD(Card card) {
+        return card.getBalanceUSD();
     }
 
     public void getInfo(Card card) {
@@ -36,9 +37,8 @@ public class ATM {
 
 
     public void finishProcess() {
-        setCard(null);
+        card = null;
     }
-
 }
 
 

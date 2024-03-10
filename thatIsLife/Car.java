@@ -8,6 +8,9 @@ public class Car {
 
     private List<Human> passengers = new ArrayList<>();
 
+    public Car() {
+    }
+
     public Car(Human driver) {
         this.driver = driver;
     }
@@ -16,8 +19,6 @@ public class Car {
         this.driver = driver;
         this.passengers = passengers;
     }
-
-
 
 
 }
